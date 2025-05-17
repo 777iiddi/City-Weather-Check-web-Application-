@@ -18,9 +18,11 @@ steps:
     env:
       NODE_OPTIONS: '--openssl-legacy-provider'   # ✅ Bonne indentation ici
 
-  - script: CI=npm test
+  - script: |
+     CI=true npm test
     displayName: 'Lancer les tests (si tu en as)'
-    continueOnError: true  # Continue même si les tests échouent
+    continueOnError: true
+
 
   - task: PublishBuildArtifacts@1
     inputs:
