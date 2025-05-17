@@ -15,6 +15,8 @@ steps:
 
   - script: npm run build
     displayName: 'Construire le projet React'
+    env:
+    NODE_OPTIONS: --openssl-legacy-provider
 
   - script: npm test
     displayName: 'Lancer les tests (si tu en as)'
