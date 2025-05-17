@@ -7,7 +7,7 @@ pool:
 steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: '20.x'   # Installe Node.js version 20 (ou autre version récente)
+      versionSpec: '20.x'   # Installe Node.js version 20
     displayName: 'Installer Node.js'
 
   - script: npm install
@@ -16,11 +16,11 @@ steps:
   - script: npm run build
     displayName: 'Construire le projet React'
     env:
-    NODE_OPTIONS: --openssl-legacy-provider
+      NODE_OPTIONS: '--openssl-legacy-provider'   # ✅ Bonne indentation ici
 
   - script: npm test
     displayName: 'Lancer les tests (si tu en as)'
-    continueOnError: true  # Continue même si pas de tests ou si tests échouent
+    continueOnError: true  # Continue même si les tests échouent
 
   - task: PublishBuildArtifacts@1
     inputs:
