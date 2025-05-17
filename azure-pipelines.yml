@@ -19,7 +19,7 @@ steps:
       NODE_OPTIONS: '--openssl-legacy-provider'   # ✅ Bonne indentation ici
 
   - script: |
-     CI=true npm test
+     CI=true npm test -- --passWithNoTests
     displayName: 'Lancer les tests (si tu en as)'
     continueOnError: true
 
