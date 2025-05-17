@@ -1,0 +1,28 @@
+trigger:
+  - main   # Le pipeline se déclenche à chaque push sur la branche main
+
+pool:
+  vmImage: 'ubuntu-latest'  # Utilisation d'une VM Ubuntu
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '20.x'   # Installe Node.js version 20 (ou autre version récente)
+    displayName: 'Installer Node.js'
+
+  - script: npm install
+    displayName: 'Installer les dépendances'
+
+  - script: npm run build
+    displayName: 'Construire le projet React'
+
+  - script: npm test
+    displayName: 'Lancer les tests (si tu en as)'
+    continueOnError: true  # Continue même si pas de tests ou si tests échouent
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: 'build'
+      ArtifactName: 'react-app'
+      publishLocation: 'Container'
+    displayName: 'Publier le dossier build comme artifact'
